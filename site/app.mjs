@@ -91,15 +91,26 @@ function section(title, paragraphs, parent) {
 function itemsFor(domain) { return catalogue.items.filter(item => item.domainId === domain.id).sort((a,b) => a.order-b.order); }
 function itemLink(item) { return link(item.title, `#item/${item.id}`); }
 function resources(item, parent) {
-  const block = section('Where to learn', [], parent);
-  for (const id of item.resourceIds) {
-    const resource = catalogue.resources.find(r => r.id === id);
-    const row = el('article', undefined, 'resource');
-    row.append(link(resource.title, resource.url, true), el('p', resource.purpose));
-    row.append(el('p', `${resource.provider} · ${resource.classification === 'official' ? 'Official source' : 'Community resource'} · Access: ${resource.access.replaceAll('-', ' ')} · Edition: ${resource.compatibility} · Checked ${resource.checkedAt}`, 'metadata'));
-    if (resource.compatibilityNote) row.append(el('p', resource.compatibilityNote, 'metadata'));
-    block.append(row);
+  for (const [classification,title] of [['official','Read more · official documentation and lessons'],['community','Optional community reading and practice']]) {
+    const selected = item.resourceIds.map(id => catalogue.resources.find(resource => resource.id === id)).filter(resource => resource.classification === classification);
+    if (!selected.length) continue;
+    const block = section(title, [], parent);
+    block.dataset.sources = classification;
+    for (const resource of selected) {
+      const row = el('article', undefined, 'resource');
+      row.append(link(resource.title, resource.url, true), el('p', resource.purpose));
+      row.append(el('p', `${resource.provider} · ${resource.classification === 'official' ? 'Official source' : 'Community resource'} · Access: ${resource.access.replaceAll('-', ' ')} · Edition: ${resource.compatibility} · Checked ${resource.checkedAt}`, 'metadata'));
+      if (resource.compatibilityNote) row.append(el('p', resource.compatibilityNote, 'metadata'));
+      block.append(row);
+    }
   }
+}
+function listSection(title, points, parent) {
+  const block = section(title,[],parent);
+  const list = el('ul');
+  points.forEach(text => list.append(el('li',text)));
+  block.append(list);
+  return block;
 }
 function renderHome() {
   const hero = el('section', undefined, 'hero');
@@ -129,7 +140,7 @@ function renderHome() {
   const guide = catalogue.guide;
   const upcoming = guide.effectiveDate > new Date().toISOString().slice(0,10);
   const notice = el('div', undefined, 'notice');
-  notice.append(el('p', guide.title), el('strong', `${upcoming ? 'Upcoming' : 'Selected'} exam guide · ${guide.edition} · Effective ${guide.effectiveDate}`), el('p', `Roadmap reviewed ${guide.reviewedAt}. Resources may follow a different edition; check their labels. Study progress is not an official exam score.`), link('Read the official guide', guide.sourceUrl, true));
+  notice.append(el('p', guide.title), el('strong', `${upcoming ? 'Upcoming' : 'Selected'} exam guide · ${guide.edition} · Effective ${guide.effectiveDate}`), el('p', `For exams on or after ${guide.effectiveDate}. Roadmap reviewed ${guide.reviewedAt}. For an earlier sitting, check the official guide for that date. Resources may follow a different edition; check their labels. Study progress is not an official exam score.`), link('Read the official guide', guide.sourceUrl, true));
   main.append(notice);
   const heading = el('div', undefined, 'section-heading');
   heading.append(el('h2', 'Your roadmap'), el('p', 'Explore freely. Return whenever you need.', 'muted')); main.append(heading);
@@ -178,7 +189,12 @@ function renderItem(item) {
   for (const id of item.prerequisiteIds) { const p = el('p'); p.append(itemLink(catalogue.items.find(i => i.id === id))); prereq.append(p); }
   if (item.kind === 'study') {
     section('Why it matters', [item.whyItMatters], body);
+    const summary = listSection('Important summary',item.summary,body);
+    const primary = item.resourceIds.map(id => catalogue.resources.find(resource => resource.id === id)).find(resource => resource.classification === 'official');
+    if (primary) summary.append(link(`Read more: ${primary.title}`,primary.url,true));
     section('Get oriented', item.orientation, body);
+    listSection('Best practices',item.bestPractices,body);
+    listSection('Tips and common pitfalls',item.tips,body);
   } else {
     section('Your goal', [item.goal], body);
     const practice = el('details'); practice.className = 'practice-cues';

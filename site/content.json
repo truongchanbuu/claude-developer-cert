@@ -6,7 +6,7 @@
     "edition": "Version 1.1",
     "effectiveDate": "2026-12-07",
     "sourceUrl": "https://cc.sj-cdn.net/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1794946771/Claude_Certified_Developer_-_Foundations_Exam_Guide_Updated_Dec_7.pdf",
-    "reviewedAt": "2026-11-23",
+    "reviewedAt": "2026-11-24",
     "objectiveIdNote": "Objective numbers are local references in guide order. The official guide lists objectives by name.",
     "objectives": [
       {
@@ -231,6 +231,18 @@
       "compatibilityNote": "Technical reference independent of the exam edition."
     },
     {
+      "id": "claude-code-skills",
+      "title": "Extend Claude with skills",
+      "provider": "Anthropic",
+      "url": "https://code.claude.com/docs/en/skills",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Read how to write a Skill and control whether Claude can invoke it automatically.",
+      "checkedAt": "2026-11-24",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
       "id": "claude-code-hooks",
       "title": "Hooks reference",
       "provider": "Anthropic",
@@ -327,6 +339,18 @@
       "compatibilityNote": "Technical reference independent of the exam edition."
     },
     {
+      "id": "calibrate-agent-evaluations",
+      "title": "Demystifying evals for AI agents",
+      "provider": "Anthropic",
+      "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Compare grading methods and see how Anthropic calibrates model graders with human experts.",
+      "checkedAt": "2026-11-24",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
       "id": "choose-model",
       "title": "Choosing the right model",
       "provider": "Anthropic",
@@ -347,6 +371,18 @@
       "access": "public",
       "purpose": "Look up current models, capabilities, and prices for a real workload.",
       "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "model-migration-guides",
+      "title": "Model migration guides",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Find model-specific migration guidance before upgrading an integration.",
+      "checkedAt": "2026-11-24",
       "compatibility": "unverified",
       "compatibilityNote": "Technical reference independent of the exam edition."
     },
@@ -435,6 +471,30 @@
       "compatibilityNote": "The publisher describes a mix of older and December 7 sets. The preview's edition is unverified."
     },
     {
+      "id": "community-reddit-hook-exit-codes",
+      "title": "Why a failing Claude Code hook can let a tool call proceed",
+      "provider": "Reddit r/ClaudeCode",
+      "url": "https://www.reddit.com/r/ClaudeCode/comments/1xoek5q/psa_exit_1_in_a_claude_code_pretooluse_hook_does/",
+      "classification": "community",
+      "access": "public",
+      "purpose": "Read a debugging example where a command hook reported an error and the tool call still ran.",
+      "checkedAt": "2026-11-24",
+      "compatibility": "unverified",
+      "compatibilityNote": "The example uses plain-text output from a PreToolUse command hook. Structured output and failure settings can change the result. Check the official Hooks reference for the exit-code rules."
+    },
+    {
+      "id": "community-reddit-judge-calibration",
+      "title": "A return-policy case for calibrating a model judge",
+      "provider": "Reddit r/AI_Agents",
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1x0rx51/what_it_took_to_get_an_llm_judge_from_garbage_to/",
+      "classification": "community",
+      "access": "public",
+      "purpose": "See how a keyword check passed an incorrect answer and how reviewing disagreements with human labels exposed gaps in the rubric.",
+      "checkedAt": "2026-11-24",
+      "compatibility": "unverified",
+      "compatibilityNote": "This example comes from one workshop using a simulated return policy. Use Anthropic’s Demystifying evals for AI agents guidance to calibrate a grader on your workload."
+    },
+    {
       "id": "exam-guide",
       "title": "Developer Foundations guide v1.1",
       "provider": "Anthropic",
@@ -442,7 +502,7 @@
       "classification": "official",
       "access": "public",
       "purpose": "Read the selected guide for official objectives and edition-specific exam facts.",
-      "checkedAt": "2026-11-23",
+      "checkedAt": "2026-11-24",
       "compatibility": "matching"
     }
   ],
@@ -457,8 +517,8 @@
       ],
       "prerequisiteIds": [],
       "order": 1,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "handle-tool-calls",
         "stop-reasons",
@@ -470,6 +530,20 @@
         "Claude Code already gives you a ready-made harness that manages model requests and local tools. A Messages API integration gives your application that responsibility. Think in JSON messages with user and assistant roles, typed content blocks, and a stop reason that tells your application how the model turn ended.",
         "Tokens are units the model uses to process input and generate output. The context window is the model's capacity for the information in a request and the output it generates. Conversation history, documents, instructions, and tool results all use that space.",
         "Start with the client tool result example. Follow an assistant tool_use block from its call ID to the application's tool_result. Draw the original user turn, the assistant's tool request, and the next user message that contains the result. Then trace a second tool call in the same assistant turn."
+      ],
+      "summary": [
+        "The Messages API uses typed content blocks. A client tool call appears as a tool_use block that your application executes.",
+        "Match each client tool call to a tool_result using the call ID as tool_use_id. A failed call still needs a result.",
+        "Read stop_reason to distinguish a request for tool execution, a completed turn, and a truncated response.",
+        "The model’s context window covers the history you send and the output it generates. Tool outputs add to the input budget."
+      ],
+      "bestPractices": [
+        "Keep the full assistant response in history. Immediately append one user message containing the results for that turn’s client tool calls.",
+        "Return is_error: true with a concise explanation when a tool fails. Cap retries so a repeated call cannot keep the loop running indefinitely."
+      ],
+      "tips": [
+        "For a turn with multiple calls, collect one result per ID and put the result blocks first in the next user message.",
+        "If a response stops at max_tokens, handle it as incomplete before displaying it as a final answer. Estimate large requests with the token counting API."
       ],
       "nextItemId": "study-claude-code"
     },
@@ -483,17 +557,32 @@
       ],
       "prerequisiteIds": [],
       "order": 2,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "claude-code-extensions",
+        "claude-code-skills",
         "claude-code-hooks",
-        "community-claude-certifications"
+        "community-claude-certifications",
+        "community-reddit-hook-exit-codes"
       ],
       "whyItMatters": "Shared instructions and event hooks solve different problems in a team's development workflow.",
       "orientation": [
         "Use CLAUDE.md for short repository conventions that should be available throughout the session. Put a release procedure the team invokes on demand in a Skill. A hook runs when a configured lifecycle event fires, so it fits a mechanical check that must happen after a particular tool action.",
         "Read the feature comparison and the hook lifecycle. For one task you already do in Claude Code, write down when the behavior should occur, who initiates it, and what evidence would show that it actually ran."
+      ],
+      "summary": [
+        "CLAUDE.md supplies standing project context such as build commands and repository conventions.",
+        "A Skill packages a repeatable procedure or reference. Claude can load it when relevant, and a user can invoke it directly.",
+        "Hooks run on configured events. PreToolUse can block a call before execution, while PostToolUse runs after the tool has acted."
+      ],
+      "bestPractices": [
+        "Keep project-wide instructions short and move detailed procedures into a Skill whose description explains when to use it.",
+        "Match hooks to the specific event and tool you need. Test both the allowed and blocked paths for a hook that protects an action."
+      ],
+      "tips": [
+        "Use disable-model-invocation: true in a Skill’s frontmatter when only the user should start the procedure.",
+        "Open /hooks to see what is configured and where it came from, then trigger a matching action to check that it runs."
       ],
       "nextItemId": "study-grounding"
     },
@@ -510,8 +599,8 @@
         "study-messages-api"
       ],
       "order": 3,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "claude-citations",
         "claude-structured-outputs"
@@ -520,6 +609,19 @@
       "orientation": [
         "Give each supplied passage a stable ID. Ask Claude to answer only from those passages, attach an ID to each supported claim, and return an explicit not-found status when evidence is missing. Decide how your application handles a valid source ID attached to an unsupported claim.",
         "Read how native citation blocks are returned. The strict JSON output mode and native citations cannot share an API request. If your interface needs JSON, design a response schema with source IDs, then check that those IDs resolve and that the cited evidence supports the claims."
+      ],
+      "summary": [
+        "Grounding means checking each factual claim against the supplied evidence. A valid passage ID can still point to text that fails to support the claim.",
+        "Native citations locate passages in supplied documents. Strict JSON output constrains response shape. They cannot be enabled in the same API request, so choose the format your application needs.",
+        "A schema can express a missing-evidence outcome so the application can handle it explicitly."
+      ],
+      "bestPractices": [
+        "Attach stable passage IDs before prompting for structured JSON. Ask for IDs per claim and check both that each ID resolves and that its passage supports the claim.",
+        "Use native citations when you want to show excerpts to a reader. Put citable passages in the document’s source content."
+      ],
+      "tips": [
+        "With JSON output, check for refusal and max_tokens before treating the response as schema-valid.",
+        "Test a valid ID pointing to an irrelevant passage alongside an unknown ID. The two cases exercise different checks."
       ],
       "nextItemId": "study-mcp-capabilities"
     },
@@ -536,8 +638,8 @@
         "study-claude-code"
       ],
       "order": 4,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "mcp-architecture",
         "claude-code-extensions"
@@ -546,6 +648,19 @@
       "orientation": [
         "The host manages client connections to MCP servers. A server can expose a readable resource, a callable tool, and a reusable prompt independently. A single application's local function can stay a custom tool when other clients have no need for it.",
         "Read about protocol primitives and transports. Sketch one shared service with a resource URI, a parameterized tool call, and a prompt template. Decide whether the server is launched locally over stdio or hosted for remote clients over Streamable HTTP. Check what your actual clients support."
+      ],
+      "summary": [
+        "An MCP host manages client connections to servers. Those servers can expose distinct capabilities.",
+        "Tools run operations, resources provide reference data, and prompts offer reusable interaction templates.",
+        "Stdio connects local processes. Streamable HTTP lets clients reach a server over a network."
+      ],
+      "bestPractices": [
+        "Use a resource URI for reference data and a tool with a clear input schema for parameterized operations. Expose a prompt when users need a reusable way to start a task.",
+        "Check the protocol version, transport and capabilities your target client supports before relying on them. Verify authorization on the remote server."
+      ],
+      "tips": [
+        "Check discovery and use separately. For example, verify that a resource appears in resources/list and can be fetched with resources/read.",
+        "When debugging a stdio server, send diagnostic logs to stderr so stdout carries the protocol messages."
       ],
       "nextItemId": "study-workflow-control"
     },
@@ -562,8 +677,8 @@
         "study-messages-api"
       ],
       "order": 5,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "effective-agents",
         "agent-sdk-hooks"
@@ -572,6 +687,19 @@
       "orientation": [
         "A workflow follows a path defined by application code. An agent can choose the next tool based on evidence it has gathered. Both can use the same tools, and code can enforce a step limit, define permitted actions, and route incomplete cases to a person.",
         "Read about routing and model-directed agents. Sketch a process with a known input type and a fixed set of approved actions, then mark the one step where model judgment would add value. Label each terminal outcome, including missing evidence and exhausted budgets."
+      ],
+      "summary": [
+        "A workflow follows paths defined by application code. An agent can choose its next step based on what tools return.",
+        "Routing sends an input to a specialized branch. A programmatic check can decide whether the result of one step is ready for the next.",
+        "Completion, missing evidence, and exhausted budgets need defined outcomes."
+      ],
+      "bestPractices": [
+        "Start with a fixed workflow for predictable steps and delegate the step that needs model judgment.",
+        "Enforce the iteration limit in the application and define a handoff when the workflow reaches a blocker or needs human judgment."
+      ],
+      "tips": [
+        "Test an ambiguous input and an empty tool result. Verify that each reaches an explicit outcome without repeating the same step indefinitely.",
+        "Check a reported success against an observable tool result or an application check before ending the run."
       ],
       "nextItemId": "study-guardrails"
     },
@@ -588,8 +716,8 @@
         "study-workflow-control"
       ],
       "order": 6,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "mitigate-prompt-injection",
         "agent-sdk-hooks"
@@ -598,6 +726,19 @@
       "orientation": [
         "Treat retrieved documents and tool results as untrusted task data. Keep authority in server-side code that checks the authenticated actor, allowed operation and target, and any required approval before an action can run.",
         "Read the section on indirect prompt injection, then draw the flow from external content to the proposed tool call. Look for a control that still works if the model chooses an unauthorized action. Give read-only tasks credentials limited to reading the data those tasks need."
+      ],
+      "summary": [
+        "Treat instructions embedded in retrieved files, web pages, and tool results as untrusted data.",
+        "Authorize proposed actions in application code using the authenticated actor, operation, target, and any required approval.",
+        "Give tools only the data and permissions their tasks require so a mistaken action has limited impact."
+      ],
+      "bestPractices": [
+        "Keep third-party data from tools inside tool_result blocks, separate from system instructions. Test whether embedded instructions can redirect the workflow.",
+        "Validate the proposed call and apply permission checks before execution. Use read-only credentials for retrieval and scoped write permissions for approved changes."
+      ],
+      "tips": [
+        "In the Agent SDK, use a PreToolUse deny decision to stop a matched call before it runs.",
+        "Test a denied action by verifying that the underlying data stays untouched. A warning in the assistant’s response proves only what the assistant reported."
       ],
       "nextItemId": "study-eval-design"
     },
@@ -613,16 +754,31 @@
         "study-grounding"
       ],
       "order": 7,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "develop-evaluations",
-        "community-ai-certificates"
+        "calibrate-agent-evaluations",
+        "community-ai-certificates",
+        "community-reddit-judge-calibration"
       ],
       "whyItMatters": "An evaluation can reward fluent prose while missing the errors your users care about.",
       "orientation": [
         "Write a pass rule for a user-visible behavior and label concrete examples. Use code checks for exact properties such as valid source IDs. If you use a model judge for a qualitative decision, compare its judgments with human labels and inspect the disagreements by error type.",
         "Read the evaluation guide's sections on success criteria and graders. Pick an example where a good answer is concise and one where a polished answer is wrong. Use both to challenge the rubric before measuring a prompt change on cases the rubric author did not tune against."
+      ],
+      "summary": [
+        "An evaluation starts with an observable success criterion and examples that reflect the task, including difficult cases.",
+        "Code graders can check exact properties. Model or human graders can assess whether evidence actually supports an answer.",
+        "Agreement with human labels helps establish whether a model judge applies the rubric as intended."
+      ],
+      "bestPractices": [
+        "Write explicit pass and fail criteria, then label examples that include ambiguity and plausible wrong answers.",
+        "Compare judge decisions with labels from human reviewers and inspect disagreements before using its scores to decide whether a change is ready."
+      ],
+      "tips": [
+        "Include a polished but unsupported answer and a brief, correct answer to check whether the judge rewards style over correctness.",
+        "Reserve held-out cases for comparing changes after you finish tuning the rubric."
       ],
       "nextItemId": "study-model-selection"
     },
@@ -638,17 +794,31 @@
         "study-eval-design"
       ],
       "order": 8,
-      "contentEdition": "1",
-      "reviewedAt": "2026-11-23",
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
       "resourceIds": [
         "choose-model",
         "models-overview",
+        "model-migration-guides",
         "community-preporato"
       ],
       "whyItMatters": "A high average score can hide a failure on an important input type, and a slow tail can break an interactive feature even when the typical response is fast.",
       "orientation": [
         "Compare each model on the same evaluation cases and measure quality by input type. Record the prompt and model versions, settings, tokens, and latency so you can reproduce the comparison. Track p95 latency as a threshold that 95% of measured requests finish within.",
         "Use the current model table to shortlist candidates. For each, ask whether it meets every binding requirement and compare operating cost among the models that qualify. Repeat the evaluation before adopting a model or configuration change."
+      ],
+      "summary": [
+        "Model choice balances quality, feature support, latency, and cost for the workload.",
+        "A model’s supported features and request limits can vary by release and provider.",
+        "Latency and quality distributions reveal failures that averages can hide."
+      ],
+      "bestPractices": [
+        "Set minimum quality and maximum latency and cost thresholds. Compare candidates on representative cases using the same evaluation and record their model IDs and settings.",
+        "Before switching, review the target model’s migration notes and rerun critical requests, including tool use and long inputs."
+      ],
+      "tips": [
+        "Use the Models API on the Claude Platform to look up token limits and capabilities by model ID. Check your deployment provider’s documentation for availability.",
+        "If a model supports effort settings, benchmark a setting change on the same cases before switching models."
       ]
     },
     {

@@ -40,7 +40,7 @@ export function validateContent(content) {
     require(textList(item.resourceIds) && item.resourceIds.every(id => resourceIds.has(id)), 'resource mapping');
     require(Array.isArray(item.prerequisiteIds) && item.prerequisiteIds.every(id => itemIds.has(id)), 'prerequisites');
     require(item.nextItemId === undefined || itemIds.has(item.nextItemId), 'next item');
-    if (item.kind === 'study') require(textValue(item.whyItMatters) && textList(item.orientation), 'study fields');
+    if (item.kind === 'study') require(textValue(item.whyItMatters) && ['orientation','summary','bestPractices','tips'].every(key => textList(item[key])), 'study fields');
     else {
       require(textValue(item.goal) && ['instructions', 'expectedObservations', 'hints', 'solution', 'reasoning'].every(key => textList(item[key])), 'exercise fields');
       if (item.workedExample !== undefined) require(textList(item.workedExample), 'worked example');

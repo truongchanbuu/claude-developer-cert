@@ -4,7 +4,7 @@ A static personal study roadmap for developers who have used Claude Code or Code
 
 ## Study
 
-Start with the recommended activity, follow its learning resources, then try the supplied exercise. The roadmap covers eight domains with eight curated study activities and eight original exercises. Each exercise includes practice material, hints, and a reference solution with reasoning; no API key or subscription is required for the core activity.
+Start with the recommended activity, follow its learning resources, then try the supplied exercise. The roadmap covers eight domains with eight curated study activities and eight original exercises. Each study lesson has an important summary, best practices, tips/common pitfalls, and official read-more links. Community reading is optional and separated from official guidance. Each exercise includes practice material, hints, and a reference solution with reasoning; no API key or subscription is required for the core activity.
 
 Use **Activity status** to record your progress and **Needs review** to collect topics to revisit. Save questions and conclusions in each activity's note editor. Review lists link back to your activities and show their saved notes. The notebook also retains notes from retired activities.
 
@@ -55,7 +55,7 @@ Storage key: `claude-developer-cert:learner-state:v1`.
 
 ## Content maintenance
 
-Edit `site/content.json`. Keep item IDs stable, map objective references to the selected guide, and update review/access/compatibility metadata when checking linked sources. Objective numbers are local references in guide order, not official objective codes. Increase an item's content edition when the learning activity materially changes; never reuse a retired ID for a different topic.
+Edit `site/content.json`. Study items require `summary`, `bestPractices`, and `tips` arrays alongside their original orientation. Keep guidance supported by official sources. Curated community entries need a topic-specific purpose and explicit version/evidence limits; discussion anecdotes are not exam facts. Keep item IDs stable, map objective references to the selected guide, and update review/access/compatibility metadata when checking linked sources. Objective numbers are local references in guide order, not official objective codes. Increase an item's content edition when the learning activity materially changes; never reuse a retired ID for a different topic.
 
 Orientations and exercises are original, with synthetic inline examples. Linked material remains its provider's property; links do not grant republication rights. Recalled or leaked live exam content is excluded. Enrollment, charges, availability, and policies on external websites are governed by those providers.
 
@@ -72,7 +72,7 @@ A local preview, enabled Pages setting, or green test job does not establish a s
 
 ## Validation
 
-On November 24, 2026, `node --test` passed 50 tests; both modules passed syntax checks. Chromium 158 checks passed roadmap/resource/exercise navigation, literal note rendering, save/reload, confirmed deletion/reset, Unicode limits, keyboard-only study-to-review flow, dirty-note navigation and browser-history cases, blocked/quota/corrupt storage handling, archived notes, edition changes, and full browser restart persistence. New learning-cycle checks cover collapsed examples/earlier notes, comparison before rating, scheduled/due returns, and preservation of old saved data and draft notes. All four main views fit a 360-pixel viewport without page overflow. Nested-path direct links and refresh work locally.
+On November 24, 2026, `node --test` passed 54 tests; both modules passed syntax checks. Chromium 158 checks passed roadmap/resource/exercise navigation, literal note rendering, save/reload, confirmed deletion/reset, Unicode limits, keyboard-only study-to-review flow, dirty-note navigation and browser-history cases, blocked/quota/corrupt storage handling, archived notes, edition changes, and full browser restart persistence. New learning-cycle checks cover collapsed examples/earlier notes, comparison before rating, scheduled/due returns, and preservation of old saved data and draft notes. All four main views fit a 360-pixel viewport without page overflow. Nested-path direct links and refresh work locally.
 
 Local throttled preview: approximately 200 ms load at 10 Mbps with 40 ms simulated latency; a status change took under 1 ms on the validation machine. Static files total approximately 111 KiB, including the optional learning-methods page. These local measurements are not a Pages performance guarantee.
 
