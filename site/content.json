@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "ccdv-f-v1-1",
+    "title": "Claude Certified Developer – Foundations Exam Guide",
+    "edition": "Version 1.1",
+    "effectiveDate": "2026-12-07",
+    "sourceUrl": "https://cc.sj-cdn.net/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1794946771/Claude_Certified_Developer_-_Foundations_Exam_Guide_Updated_Dec_7.pdf",
+    "reviewedAt": "2026-11-23",
+    "objectiveIdNote": "Objective numbers are local references in guide order. The official guide lists objectives by name.",
+    "objectives": [
+      {
+        "id": "1.1",
+        "domainId": "agents-workflows",
+        "title": "Selecting the workflow and runtime"
+      },
+      {
+        "id": "1.2",
+        "domainId": "agents-workflows",
+        "title": "Building agents and enforcing steps with hooks"
+      },
+      {
+        "id": "1.3",
+        "domainId": "agents-workflows",
+        "title": "Diagnosing agent coordination and termination"
+      },
+      {
+        "id": "2.1",
+        "domainId": "applications-integration",
+        "title": "Using the Messages API"
+      },
+      {
+        "id": "2.2",
+        "domainId": "applications-integration",
+        "title": "Handling boundaries across application surfaces"
+      },
+      {
+        "id": "2.3",
+        "domainId": "applications-integration",
+        "title": "Configuring Claude systems across environments"
+      },
+      {
+        "id": "2.4",
+        "domainId": "applications-integration",
+        "title": "Recovering from integration errors"
+      },
+      {
+        "id": "3.1",
+        "domainId": "claude-code",
+        "title": "Operating Claude Code across interfaces"
+      },
+      {
+        "id": "3.2",
+        "domainId": "claude-code",
+        "title": "Choosing and packaging Claude Code extensions"
+      },
+      {
+        "id": "4.1",
+        "domainId": "eval-testing-debugging",
+        "title": "Designing and calibrating evaluations"
+      },
+      {
+        "id": "4.2",
+        "domainId": "eval-testing-debugging",
+        "title": "Tracing a failure to its source"
+      },
+      {
+        "id": "5.1",
+        "domainId": "model-selection-optimization",
+        "title": "Understanding generation and model settings"
+      },
+      {
+        "id": "5.2",
+        "domainId": "model-selection-optimization",
+        "title": "Selecting and rolling out a model tier"
+      },
+      {
+        "id": "5.3",
+        "domainId": "model-selection-optimization",
+        "title": "Measuring and reducing model costs"
+      },
+      {
+        "id": "6.1",
+        "domainId": "prompt-context-engineering",
+        "title": "Managing context across long sessions"
+      },
+      {
+        "id": "6.2",
+        "domainId": "prompt-context-engineering",
+        "title": "Revising prompts with regression evidence"
+      },
+      {
+        "id": "6.3",
+        "domainId": "prompt-context-engineering",
+        "title": "Constraining and validating model output"
+      },
+      {
+        "id": "6.4",
+        "domainId": "prompt-context-engineering",
+        "title": "Grounding answers and citing evidence"
+      },
+      {
+        "id": "7.1",
+        "domainId": "security-safety",
+        "title": "Defending against untrusted instructions"
+      },
+      {
+        "id": "7.2",
+        "domainId": "security-safety",
+        "title": "Enforcing action permissions in code"
+      },
+      {
+        "id": "7.3",
+        "domainId": "security-safety",
+        "title": "Scoping and protecting API credentials"
+      },
+      {
+        "id": "8.1",
+        "domainId": "tools-mcp",
+        "title": "Designing tools and shaping their results"
+      },
+      {
+        "id": "8.2",
+        "domainId": "tools-mcp",
+        "title": "Implementing and connecting MCP servers"
+      },
+      {
+        "id": "8.3",
+        "domainId": "tools-mcp",
+        "title": "Choosing how to provide a capability"
+      }
+    ]
+  },
+  "domains": [
+    {
+      "id": "agents-workflows",
+      "title": "Agents and Workflows",
+      "order": 1,
+      "weight": 17
+    },
+    {
+      "id": "applications-integration",
+      "title": "Applications and Integration",
+      "order": 2,
+      "weight": 20
+    },
+    {
+      "id": "claude-code",
+      "title": "Claude Code",
+      "order": 3,
+      "weight": 8
+    },
+    {
+      "id": "eval-testing-debugging",
+      "title": "Eval, Testing, and Debugging",
+      "order": 4,
+      "weight": 10
+    },
+    {
+      "id": "model-selection-optimization",
+      "title": "Model Selection and Optimization",
+      "order": 5,
+      "weight": 12
+    },
+    {
+      "id": "prompt-context-engineering",
+      "title": "Prompt and Context Engineering",
+      "order": 6,
+      "weight": 15
+    },
+    {
+      "id": "security-safety",
+      "title": "Security and Safety",
+      "order": 7,
+      "weight": 8
+    },
+    {
+      "id": "tools-mcp",
+      "title": "Tools and MCP",
+      "order": 8,
+      "weight": 10
+    }
+  ],
+  "resources": [
+    {
+      "id": "handle-tool-calls",
+      "title": "Handle tool calls",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Read how application code pairs client tool calls with their results.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "stop-reasons",
+      "title": "Stop reasons and fallback",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Distinguish an answer that is ready, an output limit, and a request for tool execution.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "context-windows",
+      "title": "Context windows",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "classification": "official",
+      "access": "public",
+      "purpose": "See what counts toward the model's token budget when you send a request.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "claude-code-extensions",
+      "title": "Extend Claude Code",
+      "provider": "Anthropic",
+      "url": "https://code.claude.com/docs/en/features-overview",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Compare instructions, Skills, hooks, plugins, subagents, and MCP by what they do and when they load.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "claude-code-hooks",
+      "title": "Hooks reference",
+      "provider": "Anthropic",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Check when a hook runs and which operations it can observe or stop.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "claude-citations",
+      "title": "Citations",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations",
+      "classification": "official",
+      "access": "public",
+      "purpose": "See how cited text is represented and check the API's feature compatibility before designing your response.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "claude-structured-outputs",
+      "title": "Structured outputs",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "classification": "official",
+      "access": "public",
+      "purpose": "See how JSON schemas constrain output and learn how stop conditions affect that contract.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "mcp-architecture",
+      "title": "MCP architecture overview",
+      "provider": "Model Context Protocol",
+      "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Compare tools, resources, prompts, and transports in the protocol's own documentation.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Protocol reference independent of the exam edition. Check your target clients' supported protocol versions."
+    },
+    {
+      "id": "effective-agents",
+      "title": "Building effective AI agents",
+      "provider": "Anthropic",
+      "url": "https://www.anthropic.com/research/building-effective-agents",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Compare program-controlled workflows and model-directed agents, then read about routing.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "agent-sdk-hooks",
+      "title": "Agent SDK hooks",
+      "provider": "Anthropic",
+      "url": "https://code.claude.com/docs/en/agent-sdk/hooks",
+      "classification": "official",
+      "access": "public",
+      "purpose": "See where an agent harness can observe or block a tool action.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "mitigate-prompt-injection",
+      "title": "Mitigate jailbreaks and prompt injections",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Trace untrusted content to model inputs and compare containment layers.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "develop-evaluations",
+      "title": "Define success criteria and build evaluations",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Turn a quality goal into test cases and select a grading method that measures it.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "choose-model",
+      "title": "Choosing the right model",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Compare candidate models against workload requirements using evaluations.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "models-overview",
+      "title": "Models overview",
+      "provider": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/models/overview",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Look up current models, capabilities, and prices for a real workload.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "claude-academy",
+      "title": "Claude Academy for developers",
+      "provider": "Anthropic",
+      "url": "https://academy.claude.com/products/platform",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Browse Anthropic's platform courses and tutorials as optional background. Check the course page for enrollment and any API access requirements.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Technical reference independent of the exam edition."
+    },
+    {
+      "id": "partner-certifications",
+      "title": "Certification catalogue",
+      "provider": "Anthropic Partner Academy",
+      "url": "https://anthropic-partners.skilljar.com/page/partner-certifications",
+      "classification": "official",
+      "access": "unverified",
+      "purpose": "Find the official certification pathway and the registration entry point.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "The page returned an access error during review. See Pearson's public program page for the registration route."
+    },
+    {
+      "id": "partner-certification-faq",
+      "title": "Certification FAQ",
+      "provider": "Anthropic Partner Academy",
+      "url": "https://anthropic-partners.skilljar.com/page/faq-certifications",
+      "classification": "official",
+      "access": "unverified",
+      "purpose": "Check official eligibility and program policies before scheduling.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "The page returned an access error during review. See Pearson's public program page for eligibility information."
+    },
+    {
+      "id": "pearson-program",
+      "title": "Claude Certification Program",
+      "provider": "Pearson VUE",
+      "url": "https://www.pearsonvue.com/us/en/anthropic.html",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Check Partner Network eligibility and the official registration route before scheduling.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "Program and eligibility information. Consult the selected guide for edition-specific exam facts."
+    },
+    {
+      "id": "community-ai-certificates",
+      "title": "December 7 developer practice",
+      "provider": "AI Certificates",
+      "url": "https://aicertificates.study/ccdv-f-v2",
+      "classification": "community",
+      "access": "public",
+      "purpose": "Optional external practice. The publisher offers a free first form and sells access to additional sets.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "matching",
+      "compatibilityNote": "The publisher says this set uses the December 7, 2026 blueprint."
+    },
+    {
+      "id": "community-claude-certifications",
+      "title": "Claude Certifications developer guide",
+      "provider": "Amey Thakur",
+      "url": "https://amey-thakur.github.io/CLAUDE-CERTIFICATIONS/developer-foundations/index.html",
+      "classification": "community",
+      "access": "public",
+      "purpose": "Optional index for background reading and links. Use this companion's official guide for weights and exam format.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "different",
+      "compatibilityNote": "The publisher's certification index lists the earlier 53-item CCDV-F edition."
+    },
+    {
+      "id": "community-preporato",
+      "title": "Developer Foundations practice collection",
+      "provider": "Preporato",
+      "url": "https://preporato.com/certificates/claude-certified-developer-foundations",
+      "classification": "community",
+      "access": "public",
+      "purpose": "Optional practice collection with a public preview and paid full access. Check the edition on the individual set.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "unverified",
+      "compatibilityNote": "The publisher describes a mix of older and December 7 sets. The preview's edition is unverified."
+    },
+    {
+      "id": "exam-guide",
+      "title": "Developer Foundations guide v1.1",
+      "provider": "Anthropic",
+      "url": "https://cc.sj-cdn.net/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1794946771/Claude_Certified_Developer_-_Foundations_Exam_Guide_Updated_Dec_7.pdf",
+      "classification": "official",
+      "access": "public",
+      "purpose": "Read the selected guide for official objectives and edition-specific exam facts.",
+      "checkedAt": "2026-11-23",
+      "compatibility": "matching"
+    }
+  ],
+  "items": [
+    {
+      "id": "study-messages-api",
+      "kind": "study",
+      "title": "Read a tool-using API turn",
+      "domainId": "applications-integration",
+      "objectiveIds": [
+        "2.1"
+      ],
+      "prerequisiteIds": [],
+      "order": 1,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "handle-tool-calls",
+        "stop-reasons",
+        "context-windows",
+        "claude-academy"
+      ],
+      "whyItMatters": "When you build an integration, your code owns the conversation history and what happens after Claude proposes a tool call.",
+      "orientation": [
+        "Claude Code already gives you a ready-made harness that manages model requests and local tools. A Messages API integration gives your application that responsibility. Think in JSON messages with user and assistant roles, typed content blocks, and a stop reason that tells your application how the model turn ended.",
+        "Tokens are units the model uses to process input and generate output. The context window is the model's capacity for the information in a request and the output it generates. Conversation history, documents, instructions, and tool results all use that space.",
+        "Start with the client tool result example. Follow an assistant tool_use block from its call ID to the application's tool_result. Draw the original user turn, the assistant's tool request, and the next user message that contains the result. Then trace a second tool call in the same assistant turn."
+      ],
+      "nextItemId": "study-claude-code"
+    },
+    {
+      "id": "study-claude-code",
+      "kind": "study",
+      "title": "Choose the right Claude Code extension",
+      "domainId": "claude-code",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "prerequisiteIds": [],
+      "order": 2,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "claude-code-extensions",
+        "claude-code-hooks",
+        "community-claude-certifications"
+      ],
+      "whyItMatters": "Shared instructions and event hooks solve different problems in a team's development workflow.",
+      "orientation": [
+        "Use CLAUDE.md for short repository conventions that should be available throughout the session. Put a release procedure the team invokes on demand in a Skill. A hook runs when a configured lifecycle event fires, so it fits a mechanical check that must happen after a particular tool action.",
+        "Read the feature comparison and the hook lifecycle. For one task you already do in Claude Code, write down when the behavior should occur, who initiates it, and what evidence would show that it actually ran."
+      ],
+      "nextItemId": "study-grounding"
+    },
+    {
+      "id": "study-grounding",
+      "kind": "study",
+      "title": "Ground an answer in supplied evidence",
+      "domainId": "prompt-context-engineering",
+      "objectiveIds": [
+        "6.3",
+        "6.4"
+      ],
+      "prerequisiteIds": [
+        "study-messages-api"
+      ],
+      "order": 3,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "claude-citations",
+        "claude-structured-outputs"
+      ],
+      "whyItMatters": "A well-formed response can still invent a fact or cite a passage that fails to support it.",
+      "orientation": [
+        "Give each supplied passage a stable ID. Ask Claude to answer only from those passages, attach an ID to each supported claim, and return an explicit not-found status when evidence is missing. Decide how your application handles a valid source ID attached to an unsupported claim.",
+        "Read how native citation blocks are returned. The strict JSON output mode and native citations cannot share an API request. If your interface needs JSON, design a response schema with source IDs, then check that those IDs resolve and that the cited evidence supports the claims."
+      ],
+      "nextItemId": "study-mcp-capabilities"
+    },
+    {
+      "id": "study-mcp-capabilities",
+      "kind": "study",
+      "title": "Map external capabilities to MCP",
+      "domainId": "tools-mcp",
+      "objectiveIds": [
+        "8.2",
+        "8.3"
+      ],
+      "prerequisiteIds": [
+        "study-claude-code"
+      ],
+      "order": 4,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "mcp-architecture",
+        "claude-code-extensions"
+      ],
+      "whyItMatters": "A useful MCP interface makes the distinction between fetching reference material, invoking an operation, and reusing a prompt explicit.",
+      "orientation": [
+        "The host manages client connections to MCP servers. A server can expose a readable resource, a callable tool, and a reusable prompt independently. A single application's local function can stay a custom tool when other clients have no need for it.",
+        "Read about protocol primitives and transports. Sketch one shared service with a resource URI, a parameterized tool call, and a prompt template. Decide whether the server is launched locally over stdio or hosted for remote clients over Streamable HTTP. Check what your actual clients support."
+      ],
+      "nextItemId": "study-workflow-control"
+    },
+    {
+      "id": "study-workflow-control",
+      "kind": "study",
+      "title": "Put workflow decisions in the right layer",
+      "domainId": "agents-workflows",
+      "objectiveIds": [
+        "1.1",
+        "1.3"
+      ],
+      "prerequisiteIds": [
+        "study-messages-api"
+      ],
+      "order": 5,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "effective-agents",
+        "agent-sdk-hooks"
+      ],
+      "whyItMatters": "A predictable stop condition keeps an ambiguous lookup from consuming an unbounded number of model calls.",
+      "orientation": [
+        "A workflow follows a path defined by application code. An agent can choose the next tool based on evidence it has gathered. Both can use the same tools, and code can enforce a step limit, define permitted actions, and route incomplete cases to a person.",
+        "Read about routing and model-directed agents. Sketch a process with a known input type and a fixed set of approved actions, then mark the one step where model judgment would add value. Label each terminal outcome, including missing evidence and exhausted budgets."
+      ],
+      "nextItemId": "study-guardrails"
+    },
+    {
+      "id": "study-guardrails",
+      "kind": "study",
+      "title": "Enforce permissions at the action boundary",
+      "domainId": "security-safety",
+      "objectiveIds": [
+        "7.1",
+        "7.2"
+      ],
+      "prerequisiteIds": [
+        "study-workflow-control"
+      ],
+      "order": 6,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "mitigate-prompt-injection",
+        "agent-sdk-hooks"
+      ],
+      "whyItMatters": "A model's requested action becomes a real side effect only when your application authorizes and executes it.",
+      "orientation": [
+        "Treat retrieved documents and tool results as untrusted task data. Keep authority in server-side code that checks the authenticated actor, allowed operation and target, and any required approval before an action can run.",
+        "Read the section on indirect prompt injection, then draw the flow from external content to the proposed tool call. Look for a control that still works if the model chooses an unauthorized action. Give read-only tasks credentials limited to reading the data those tasks need."
+      ],
+      "nextItemId": "study-eval-design"
+    },
+    {
+      "id": "study-eval-design",
+      "kind": "study",
+      "title": "Calibrate a rubric against human labels",
+      "domainId": "eval-testing-debugging",
+      "objectiveIds": [
+        "4.1"
+      ],
+      "prerequisiteIds": [
+        "study-grounding"
+      ],
+      "order": 7,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "develop-evaluations",
+        "community-ai-certificates"
+      ],
+      "whyItMatters": "An evaluation can reward fluent prose while missing the errors your users care about.",
+      "orientation": [
+        "Write a pass rule for a user-visible behavior and label concrete examples. Use code checks for exact properties such as valid source IDs. If you use a model judge for a qualitative decision, compare its judgments with human labels and inspect the disagreements by error type.",
+        "Read the evaluation guide's sections on success criteria and graders. Pick an example where a good answer is concise and one where a polished answer is wrong. Use both to challenge the rubric before measuring a prompt change on cases the rubric author did not tune against."
+      ],
+      "nextItemId": "study-model-selection"
+    },
+    {
+      "id": "study-model-selection",
+      "kind": "study",
+      "title": "Choose a model with measured constraints",
+      "domainId": "model-selection-optimization",
+      "objectiveIds": [
+        "5.2"
+      ],
+      "prerequisiteIds": [
+        "study-eval-design"
+      ],
+      "order": 8,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-23",
+      "resourceIds": [
+        "choose-model",
+        "models-overview",
+        "community-preporato"
+      ],
+      "whyItMatters": "A high average score can hide a failure on an important input type, and a slow tail can break an interactive feature even when the typical response is fast.",
+      "orientation": [
+        "Compare each model on the same evaluation cases and measure quality by input type. Record the prompt and model versions, settings, tokens, and latency so you can reproduce the comparison. Track p95 latency as a threshold that 95% of measured requests finish within.",
+        "Use the current model table to shortlist candidates. For each, ask whether it meets every binding requirement and compare operating cost among the models that qualify. Repeat the evaluation before adopting a model or configuration change."
+      ]
+    },
+    {
+      "id": "exercise-pair-tool-results",
+      "kind": "exercise",
+      "title": "Pair two tool results with their calls",
+      "domainId": "applications-integration",
+      "objectiveIds": [
+        "2.1"
+      ],
+      "prerequisiteIds": [
+        "study-messages-api"
+      ],
+      "order": 9,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "handle-tool-calls",
+        "stop-reasons"
+      ],
+      "goal": "Repair the next Messages API turn when two client tools finish in a different order than they were called.",
+      "workedExample": [
+        "A library assistant asks for the due date of each of two book loans using the same client tool. The assistant lists call L1 for the atlas first and call L2 for the novel second. The novel lookup returns June 12 first, then the atlas lookup returns a permission error.",
+        "The application keeps the assistant's tool-use turn and sends one user message immediately after it. The first block reports the error with L1 and marks it as a tool error. The second block reports June 12 with L2. A text block asking for a summary follows the tool results.",
+        "The app can report the novel's due date and say the atlas date was unavailable. Assigning results by completion position would give the atlas the novel's date, even though both lookups used the same tool."
+      ],
+      "recallPrompt": "From memory, how should the application pair the weather and trail results and arrange the follow-up blocks? Why would assigning results in completion order fail?",
+      "material": {
+        "kind": "text",
+        "text": "Assistant response (shortened)\nstop_reason = tool_use\ntoolu_weather  get_forecast({day: \"Friday\"})\ntoolu_trails   get_trail_status({park: \"Fern Hollow\"})\n\nApplication results in completion order\nget_trail_status → success, \"Creek loop is open\"\nget_forecast → failure, \"Weather source timed out\"\n\nProposed follow-up\nuser content[0] = text(\"Summarize what you found.\")\nuser content[1] = tool_result(toolu_weather, \"Creek loop is open\")"
+      },
+      "instructions": [
+        "Trace each returned value to the call that produced it.",
+        "Rewrite the proposed follow-up as the content blocks of one user message. Include the weather failure and the request to summarize.",
+        "Explain what your UI can safely report if the next answer relies on these results."
+      ],
+      "expectedObservations": [
+        "The successful result belongs to the trail-status call even though that tool finished first.",
+        "The assistant response asks the application to run tools. It does not yet answer the user's question."
+      ],
+      "hints": [
+        "Use the call IDs to correlate results. Look up where tool_result blocks belong in the next message."
+      ],
+      "solution": [
+        "Keep the original assistant turn in history. Immediately append one user message with tool_result(toolu_weather, \"Weather source timed out\", is_error=true), then tool_result(toolu_trails, \"Creek loop is open\"). Put the summary request in a text block after both results.",
+        "The UI can report that the creek loop is open and that Friday's forecast could not be verified. It has no forecast value to display."
+      ],
+      "reasoning": [
+        "One result per call preserves what actually ran and gives the model a chance to handle a failed dependency. Position alone cannot identify results when tool completion order varies."
+      ]
+    },
+    {
+      "id": "exercise-place-claude-code-extensions",
+      "kind": "exercise",
+      "title": "Place three Claude Code team rules",
+      "domainId": "claude-code",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "prerequisiteIds": [
+        "study-claude-code"
+      ],
+      "order": 10,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "claude-code-extensions",
+        "claude-code-hooks"
+      ],
+      "goal": "Choose where a repository convention, an on-demand procedure, and an event-driven check belong.",
+      "workedExample": [
+        "A team maintains a collection of sample CSV files. Every new sample must include a header row, an editor occasionally asks for a field guide from a sample, and each successful edit to a sample must run the CSV validator.",
+        "Put the header convention in CLAUDE.md and the field-guide procedure in a project Skill. Use a PostToolUse command hook for Edit and Write, and check the file path so the validator runs for CSV samples only. Run the same validator in CI to catch changes made outside Claude Code.",
+        "A sample edit should show a successful edit followed by the validator's exit result. A README edit should skip validation. Putting the requirement in CLAUDE.md gives the assistant guidance, while the hook runs the check when its event matches."
+      ],
+      "recallPrompt": "From memory, where does each of the three reference-page rules belong? Why would putting the mandatory check only in CLAUDE.md fail to run it reliably?",
+      "material": {
+        "kind": "text",
+        "text": "Repository policy for a library with public reference pages\nA. Any new public option needs a matching reference entry.\nB. Maintainers occasionally request a release-note draft from a diff.\nC. Each successful Edit or Write of a reference page must run docs:check.\n\nCurrent setup\nAll three rules are written in one long CLAUDE.md.\nTrace: reference page edited → assistant reports done → docs:check absent."
+      },
+      "instructions": [
+        "Assign each rule to CLAUDE.md, a Skill, or a hook. For C, pick the event and the matching tools and paths.",
+        "Write the two trace lines you would expect after a reference page is edited, and say what to check when an unrelated file changes.",
+        "Decide how the team can enforce the same check on changes made outside Claude Code."
+      ],
+      "expectedObservations": [
+        "The docs check has a trigger and a visible exit result.",
+        "The release-note procedure loads when needed and the short repository convention stays available in the session."
+      ],
+      "hints": [
+        "Compare who initiates B with what must happen immediately after C. Look at PostToolUse in the hook reference."
+      ],
+      "solution": [
+        "Put A in repository CLAUDE.md. Package B as a project Skill. For C, configure a command hook for PostToolUse, match Edit and Write, and check the edited path against the reference directory before running docs:check.",
+        "A matching edit trace should show the completed edit followed by the docs check's result. An unrelated edit should skip the docs check. Run docs:check in CI if the result must also cover changes made outside the matching tools."
+      ],
+      "reasoning": [
+        "A hook reacts to a specific event. A procedure in CLAUDE.md relies on model behavior. PostToolUse can report a check after a successful edit, while a general repository gate needs coverage beyond these two tool actions."
+      ]
+    },
+    {
+      "id": "exercise-ground-operations-answer",
+      "kind": "exercise",
+      "title": "Correct an unsupported operations answer",
+      "domainId": "prompt-context-engineering",
+      "objectiveIds": [
+        "6.3",
+        "6.4"
+      ],
+      "prerequisiteIds": [
+        "study-grounding"
+      ],
+      "order": 11,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "claude-citations",
+        "claude-structured-outputs"
+      ],
+      "goal": "Define a grounded answer and a missing-evidence response for two questions over the same small source set.",
+      "workedExample": [
+        "A makerspace guide lists one passage saying that laser cutter safety training is offered on Tuesdays and another saying that certified members can reserve the cutter online. A learner asks when training runs and whether completing it costs $20.",
+        "Answer Tuesdays with the training passage as evidence. Mark the fee question as not_found, with a null answer and an empty source list. The reservation passage does not state the fee, even if its identifier can be included in a valid JSON object.",
+        "Validate the response fields and source identifiers in code, then evaluate whether the cited text supports the specific claim. A valid citation field cannot establish the missing price."
+      ],
+      "recallPrompt": "From memory, which headset question can you answer from the passages, and what should you return for the other one? Why does a valid passage ID fail to establish the weekend policy?",
+      "material": {
+        "kind": "text",
+        "text": "Passage OPS-12\nVisitors can collect a loaner headset at Desk B before 17:00 on weekdays.\n\nPassage OPS-19\nReturn loaner headsets to Desk D before leaving the building.\n\nQuestions and proposed output\nQ1: Where do I collect the loaner?\n    {\"status\":\"answered\",\"answer\":\"Desk B\",\"sourceIds\":[\"OPS-12\"]}\nQ2: Can I keep the headset over the weekend?\n    {\"status\":\"answered\",\"answer\":\"Yes\",\"sourceIds\":[\"OPS-19\"]}"
+      },
+      "instructions": [
+        "Write a two-sentence system instruction that requires claim-level evidence and says what to return when the text does not resolve the question.",
+        "Keep or revise each proposed JSON value using only the supplied passages.",
+        "List one check a program can do on the JSON alone and one check that requires reading the passage."
+      ],
+      "expectedObservations": [
+        "Both source IDs exist. Only one proposed answer is supported by the cited passage.",
+        "A rule about where to return equipment does not establish a policy for keeping it over the weekend."
+      ],
+      "hints": [
+        "Ask whether the text actually resolves the question. An official-looking ID only tells you where to verify the claim."
+      ],
+      "solution": [
+        "Possible instruction: Answer from the supplied passages and give the supporting passage ID for each claim. If the passages do not resolve the question, return status not_found with a null answer and no source IDs.",
+        "Keep Q1 as supplied. For Q2 return {\"status\":\"not_found\",\"answer\":null,\"sourceIds\":[]}. The passages give collection and on-site return rules without specifying weekend loans.",
+        "Validate field names, types, and allowed statuses in code. Also verify that each source ID is present in the input. Evidence review checks whether the passage actually supports the answer."
+      ],
+      "reasoning": [
+        "This exercise uses application-level source IDs in JSON. Native citation blocks are a separate API feature. Schema validation can prevent malformed output, while evidence checks address factual support."
+      ]
+    },
+    {
+      "id": "exercise-design-museum-mcp",
+      "kind": "exercise",
+      "title": "Sketch a reusable MCP interface",
+      "domainId": "tools-mcp",
+      "objectiveIds": [
+        "8.2",
+        "8.3"
+      ],
+      "prerequisiteIds": [
+        "study-mcp-capabilities"
+      ],
+      "order": 12,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "mcp-architecture",
+        "claude-code-extensions"
+      ],
+      "goal": "Classify services as MCP resources, tools, or prompts and pick a transport for two deployment setups.",
+      "workedExample": [
+        "A theater wardrobe team wants clients to read its current sizing guide at wardrobe://guide/current, compute an alteration estimate from measurements, and let staff choose a prompt template for fitting notes.",
+        "Expose the guide as a resource for resources/read, the estimator as a tool for tools/call, and the staff-selected template as a prompt for prompts/get. The estimator performs a calculation using the client's inputs. Reading the guide only retrieves the identified content.",
+        "Use stdio for a client that starts a local server process. For approved theaters connecting to a shared server, use Streamable HTTP and configure authentication and authorization at the server. Transport gets the request there, and authorization checks which client can use the capability."
+      ],
+      "recallPrompt": "From memory, which MCP primitive and method fit each museum service, and which transport fits each client? Why would classifying the occupancy lookup as a resource just because it returns data miss the intended interface?",
+      "material": {
+        "kind": "text",
+        "text": "Museum exhibit services\nA. A visitor guide that changes monthly, identified by visitor://guide/current\nB. A lookup that takes galleryId and returns current room occupancy\nC. A staff-selected template that drafts a shift handoff from today's notes\n\nClients\nOne desktop prototype starts the server as a child process.\nThe eventual service is hosted and shared by approved devices."
+      },
+      "instructions": [
+        "Place A, B, and C in the server's resource, tool, or prompt catalogue.",
+        "Match each entry to its MCP retrieval or invocation method.",
+        "Pick a transport for each deployment. Identify which setup needs the hosted service to authenticate remote clients."
+      ],
+      "expectedObservations": [
+        "Fetching a shared document, executing a lookup, and retrieving a prompt template are distinct operations.",
+        "Dynamic data can still be a resource. Here the occupancy service is deliberately an operation with an input parameter."
+      ],
+      "hints": [
+        "Compare what the client supplies and what comes back for each operation. Read the protocol's server primitives before choosing."
+      ],
+      "solution": [
+        "A is a resource read with resources/read for its URI. B is a tool invoked with tools/call and galleryId. C is a prompt retrieved with prompts/get when staff select it.",
+        "Use stdio for the locally launched child process. Use Streamable HTTP for approved remote clients, with authentication and authorization at the hosted service."
+      ],
+      "reasoning": [
+        "MCP standardizes how separate hosts discover and use a shared capability. A prompt template can describe handoff structure while the tool still owns occupancy lookup. Remote transport provides connectivity, and authorization decides which clients may use it."
+      ]
+    },
+    {
+      "id": "exercise-terminate-repeated-lookups",
+      "kind": "exercise",
+      "title": "Stop a repeated archive lookup",
+      "domainId": "agents-workflows",
+      "objectiveIds": [
+        "1.1",
+        "1.3"
+      ],
+      "prerequisiteIds": [
+        "study-workflow-control"
+      ],
+      "order": 13,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "effective-agents",
+        "agent-sdk-hooks"
+      ],
+      "goal": "Bound an archive lookup and let application code decide when to return no match or ask for review.",
+      "workedExample": [
+        "A repair intake service looks up a validated serial number in a current warranty register. Only when the register explicitly has no match should the service check a legacy register. Duplicate matches go to an operator. An unavailable register leaves the lookup incomplete.",
+        "Application code calls each register at most once, with the legacy call conditional on an explicit miss. If the current register times out, report that the lookup is incomplete. If both registers explicitly return no match, report that no warranty record was found. A duplicate ends the lookup and goes to an operator.",
+        "The workflow ends as soon as one of those outcomes is known, with at most two lookups per attempt. A model can explain the status to a customer after the workflow decides it."
+      ],
+      "recallPrompt": "From memory, when should the archive workflow query the historical index, and when must it stop or route to review? Why would asking the model to decide whether to keep looking fail to enforce the call limit?",
+      "material": {
+        "kind": "text",
+        "text": "Input: validated exhibitId = EX-147\nRequirements: Search the main index, then the historical index if absent.\n              Conflicting matches need curator review.\n              Access failures must be distinguishable from missing records.\n\nObserved agent trace\n1. resolve(EX-147, main)       → absent\n2. resolve(EX-147, historical) → absent\n3. resolve(EX-147, main)       → absent\n4. resolve(EX-147, historical) → absent\n5. agent requests another lookup"
+      },
+      "instructions": [
+        "Sketch a code-controlled path for the documented lookup sequence and mark the outcome for the supplied trace.",
+        "Add transitions for an unavailable index and conflicting records reported by an index.",
+        "State a measurable cap and decide if model judgment is necessary before making each lookup."
+      ],
+      "expectedObservations": [
+        "The first two outcomes already exhaust the required sources for this input.",
+        "A failed search is different from a complete search with no matching record."
+      ],
+      "hints": [
+        "The requirement already supplies the search order and what to do with ambiguous records. Identify which outcome permits a second lookup."
+      ],
+      "solution": [
+        "Validate exhibitId first. Query the main index once. Return a unique match, route conflicts to a curator, and report an access failure if the source cannot be checked. Only on absent, query the historical index once and apply the same outcomes. If it is absent too, return not_found.",
+        "The supplied trace should stop after event 2. The lookup step has a cap of two calls per attempt. Model judgment can help explain the result to a visitor after the workflow returns its status."
+      ],
+      "reasoning": [
+        "A program-controlled path fits a specified search order and audit requirements. A terminal outcome encoded in the workflow stays effective even if a model would keep requesting more work."
+      ]
+    },
+    {
+      "id": "exercise-enforce-read-only-summary",
+      "kind": "exercise",
+      "title": "Keep a read-only summary read-only",
+      "domainId": "security-safety",
+      "objectiveIds": [
+        "7.1",
+        "7.2"
+      ],
+      "prerequisiteIds": [
+        "study-guardrails"
+      ],
+      "order": 14,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "mitigate-prompt-injection",
+        "agent-sdk-hooks"
+      ],
+      "goal": "Identify the enforcement point that prevents actions outside a document-summary session.",
+      "workedExample": [
+        "A meal-planning assistant may read stock counts for one kitchen. A note in a returned inventory record asks the assistant to place a supply order, but the user's session is authorized only to read stock counts.",
+        "Give this session a stock-read capability and a read-scoped credential. The server checks the caller's access to the requested kitchen before reading. It denies any order request from this workflow before dispatch and records the authorization decision without storing the note.",
+        "The same checks deny reads for other kitchens regardless of the wording of the inventory note. A log written after placing an order cannot prevent the order."
+      ],
+      "recallPrompt": "From memory, what should the summary session be able to call, and where should document access and mutations be checked? Why would a stricter prompt and a log after execution fail to enforce read-only access?",
+      "material": {
+        "kind": "text",
+        "text": "Document review session\nAuthenticated viewer may read folder F-2 and request a summary.\nModel receives a retrieved memo flagged as containing untrusted instructions.\nModel proposes change_visibility(document=\"D-41\", visibility=\"public\").\n\nExisting design\nTool registry lists read_document and change_visibility.\nBoth use one service credential with write access.\nApplication logs change_visibility after execution."
+      },
+      "instructions": [
+        "Separate the evidence supplied to the model from the application's authority to act. Identify which of the proposed capabilities the summary requires.",
+        "Describe the smallest change to the tool and credential scopes. Place the authorization check before the proposed effect.",
+        "Write expected allow or deny outcomes for reading an approved document, reading outside F-2, and changing visibility."
+      ],
+      "expectedObservations": [
+        "The session's authorization already rules out the proposed change regardless of what the memo says.",
+        "A post-execution log can document a decision but arrives after an effect."
+      ],
+      "hints": [
+        "Imagine the model repeats the same tool proposal after you clarify the prompt. What server-side check would still prevent the effect?"
+      ],
+      "solution": [
+        "Expose only read_document to the summary session and use a credential limited to the read scope. Check the authenticated viewer's object and folder access on the server before retrieving a document. Reject mutation requests for this workflow at the tool boundary before dispatch.",
+        "Allow a document in F-2 for the authorized viewer. Deny a document outside F-2. Deny visibility changes from the summary session. Preserve an audit record of the decision without including memo text or credentials."
+      ],
+      "reasoning": [
+        "The user authorized a bounded read and a summary. Imported text cannot expand that authorization. A server-side check enforces the boundary even if the model continues to propose a change."
+      ]
+    },
+    {
+      "id": "exercise-audit-a-model-judge",
+      "kind": "exercise",
+      "title": "Audit a rubric using eight judgments",
+      "domainId": "eval-testing-debugging",
+      "objectiveIds": [
+        "4.1"
+      ],
+      "prerequisiteIds": [
+        "study-eval-design"
+      ],
+      "order": 15,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "develop-evaluations"
+      ],
+      "goal": "Find where a model judge over-rewards plausible text and under-rewards a correct refusal to guess.",
+      "workedExample": [
+        "A food festival uses a model judge to check replies against its stall directory. Humans and the judge both pass a supported opening time and both fail a wrong stall number. The judge also passes a polished reply that invents an allergen guarantee and fails a justified abstention on a payment method that the directory does not mention.",
+        "Agreement is two out of four. The invented guarantee is a false pass, and the justified abstention is a false fail. Revise the rubric to require evidence for each material claim and accept abstention when the directory is silent.",
+        "Hold back examples about an unsupported closing time and an unavailable accessibility detail for the next evaluation. The agreement fraction alone would not show whether the judge is too permissive, too strict, or both."
+      ],
+      "recallPrompt": "From memory, which kinds of replies caused false passes and false fails in the handbook evaluation, and how should the rubric change? Why would tuning only against total agreement miss what needs correction?",
+      "material": {
+        "kind": "text",
+        "text": "Task: answer handbook questions using supplied evidence.\nHuman pass rule: every claim is supported, or answer abstains when evidence is absent.\n\nCase  Output properties                         Human  Judge\nA     Brief supported answer                    Pass   Pass\nB     Fluent answer with one unsupported date  Fail   Pass\nC     Wrong source cited                         Fail   Fail\nD     Correct abstention, no evidence available   Pass   Fail\nE     Supported answer with valid source ID       Pass   Pass\nF     Detailed answer from general knowledge     Fail   Pass\nG     Correct answer with a valid passage        Pass   Pass\nH     Abstention despite clear evidence          Fail   Fail"
+      },
+      "instructions": [
+        "Mark false passes and false fails relative to the human labels. Calculate the judge's agreement out of eight.",
+        "Revise the rubric to handle the patterns visible in the disagreements.",
+        "Name two fresh cases to hold back while tuning the judge."
+      ],
+      "expectedObservations": [
+        "Case D shows that abstaining can satisfy the task when the documents do not answer the question.",
+        "A citation field can pass a structural check while the text still lacks support."
+      ],
+      "hints": [
+        "A false pass is a judge Pass paired with a human Fail. Agreement counts both kinds of matching labels."
+      ],
+      "solution": [
+        "B and F are false passes. D is a false fail. The judge agrees on A, C, E, G, and H, so agreement is 5 of 8.",
+        "Require support for every material claim and grade relevance before considering writing quality. Give full credit for abstaining when the source set cannot answer the question. Hold out a valid source with a tempting but unsupported detail and a new document set with an unanswerable question."
+      ],
+      "reasoning": [
+        "A single agreement percentage hides different errors. Labeling disagreement types helps you target the rubric. Fresh examples help detect improvements that only memorize the calibration cases."
+      ]
+    },
+    {
+      "id": "exercise-pick-a-model-by-threshold",
+      "kind": "exercise",
+      "title": "Pick a model under three release limits",
+      "domainId": "model-selection-optimization",
+      "objectiveIds": [
+        "5.2"
+      ],
+      "prerequisiteIds": [
+        "study-model-selection"
+      ],
+      "order": 16,
+      "contentEdition": "2",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "choose-model",
+        "models-overview"
+      ],
+      "goal": "Choose a release candidate from synthetic measurements and explain what could invalidate the choice.",
+      "workedExample": [
+        "A repair desk expects 50,000 ticket classifications per month. It requires at least 88% accuracy on incomplete tickets, p95 latency of at most 1.0 s, and monthly model cost of at most $150. In a synthetic comparison, Cedar scores 86% on incomplete tickets at 0.6 s and $1.00 per 1,000 requests. Birch scores 90% at 0.9 s and $2.50. Elm scores 95% at 0.9 s and $4.00.",
+        "Multiply each rate by 50 to get monthly estimates of $50, $125, and $200. Cedar misses the quality floor and Elm exceeds the budget. Birch is the only one that meets all three release limits.",
+        "Before releasing a settings change, test it with the same versioned evaluation, measure p95 under representative traffic, and recalculate cost from observed usage. The highest accuracy alone would select a candidate that the budget cannot support."
+      ],
+      "recallPrompt": "From memory, how do you apply all three receipt-intake limits and verify the chosen model after a settings change? Why would selecting the candidate with the highest overall accuracy fail the release criteria?",
+      "material": {
+        "kind": "text",
+        "text": "Receipt intake, 100,000 requests per month.\nRelease limits: ambiguous-input accuracy ≥ 90%, p95 ≤ 1.3 s,\n                monthly model cost ≤ $300.\n\nCandidate   Overall   Ambiguous   p95      Cost/1,000\nA           97%       84%         0.7 s    $1.20\nB           98%       92%         1.1 s    $2.70\nC           99%       97%         1.8 s    $5.30\n\nAll rows use the same evaluation cases and settings.\nThese are synthetic figures, not Claude model prices or benchmarks."
+      },
+      "instructions": [
+        "Compute each candidate's estimated monthly model cost.",
+        "Apply the release limits individually and choose one candidate, citing the constraint that rules out each other choice.",
+        "Draft a regression check for the next model or effort-setting change."
+      ],
+      "expectedObservations": [
+        "Overall accuracy is useful context but ambiguous-input accuracy is the binding quality measure.",
+        "The latency requirement uses p95. It does not follow from average request time."
+      ],
+      "hints": [
+        "Multiply each cost-per-1,000 value by the number of thousand-request groups."
+      ],
+      "solution": [
+        "The monthly estimates are $120 for A, $270 for B, and $530 for C. B meets all three limits. A misses the ambiguous-input quality floor. C exceeds both latency and cost limits.",
+        "Before switching, rerun the evaluation against a versioned holdout including ambiguous cases, measure p95 under representative traffic, and recalculate cost from observed token use. Release only if all three thresholds still hold."
+      ],
+      "reasoning": [
+        "A strong aggregate can hide a weak input group. Changing a model or an effort setting can move quality, speed, and cost in different directions, so rerun the same comparison before release."
+      ]
+    }
+  ]
+}
