@@ -504,9 +504,62 @@
       "purpose": "Read the selected guide for official objectives and edition-specific exam facts.",
       "checkedAt": "2026-11-24",
       "compatibility": "matching"
+    },
+    {
+      "id": "claude-code-overview",
+      "title": "What is Claude Code? · official overview",
+      "provider": "Anthropic · Claude Code documentation",
+      "url": "https://code.claude.com/docs/en/overview",
+      "classification": "official",
+      "access": "public",
+      "purpose": "A short introduction to the coding agent and its supported interfaces.",
+      "checkedAt": "2026-11-24",
+      "compatibility": "unverified",
+      "compatibilityNote": "Living product documentation; interfaces can change after the selected exam guide."
     }
   ],
   "items": [
+    {
+      "id": "study-introduction",
+      "kind": "study",
+      "title": "Lesson 1 · Claude Code and your certification starting point",
+      "domainId": "claude-code",
+      "objectiveIds": [
+        "3.1"
+      ],
+      "prerequisiteIds": [],
+      "order": 1,
+      "contentEdition": "1",
+      "reviewedAt": "2026-11-24",
+      "resourceIds": [
+        "exam-guide",
+        "claude-code-overview",
+        "pearson-program",
+        "partner-certifications"
+      ],
+      "nextItemId": "study-messages-api",
+      "whyItMatters": "Know what you are preparing for before studying individual features. Your Claude Code or Codex experience gives you a useful starting point.",
+      "summary": [
+        "Claude Code is Anthropic’s coding agent: it can inspect a repository, change files, and execute commands using development tools. It is available through terminal, IDE, desktop, and browser interfaces.",
+        "Claude Certified Developer – Foundations (CCDV-F) assesses practical decisions when building Claude applications, agents, and workflows. Claude Code is one part; API integration, evaluation, security, prompting, models, and MCP also matter.",
+        "No formal prerequisites are listed in the exam guide. Recommended experience and eligibility to register are separate questions."
+      ],
+      "orientation": [
+        "Exam snapshot · For the guide effective 2026-12-07: 70 items (60 scored), 120 minutes, scenario-based multiple choice. Passing uses a scaled score of 720/1,000, not a stated 72% raw score. The listed fee is $125 USD; the credential lasts 12 months. Confirm current terms before booking.",
+        "Recommended background · The guide describes 1–5 years of software engineering and at least six months using Claude, plus Python and/or TypeScript, REST APIs, JSON, CLI tools, and LLM basics. This is recommended preparation, not a mandatory course prerequisite.",
+        "Registration eligibility · Pearson currently says certification is open to organizations in the Claude Partner Network. Start registration through the Anthropic Partner Academy; check your organization’s access before paying. Public study here does not establish exam eligibility.",
+        "Your starting point · Experience with Claude Code or Codex helps. Check the gaps: can you read a JSON request, explain a tool result, inspect a Git diff, and run a test? Use the next API lesson to build beyond operating an assistant.",
+        "Quick self-check · Explain in one sentence what the coding agent does. Then name one skill the broader certification tests and one prerequisite or registration detail you still need to check. Save that gap in your lesson note."
+      ],
+      "bestPractices": [
+        "Read the official guide for your planned exam date; use its blueprint to choose what to practice.",
+        "For a small repository task, give the agent a clear goal and a way to check success. Review its changes and test results before accepting them."
+      ],
+      "tips": [
+        "You can read this lesson and use the site’s supplied exercises without an API key or paid subscription. Running Claude Code or live API examples separately requires suitable access and may incur costs.",
+        "If you can use a coding assistant but cannot yet explain the API or evaluate its output, treat that as a study gap. Completing this roadmap is not a certification or a pass prediction."
+      ]
+    },
     {
       "id": "study-messages-api",
       "kind": "study",
@@ -516,7 +569,7 @@
         "2.1"
       ],
       "prerequisiteIds": [],
-      "order": 1,
+      "order": 2,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -556,7 +609,7 @@
         "3.2"
       ],
       "prerequisiteIds": [],
-      "order": 2,
+      "order": 3,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -598,7 +651,7 @@
       "prerequisiteIds": [
         "study-messages-api"
       ],
-      "order": 3,
+      "order": 4,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -637,7 +690,7 @@
       "prerequisiteIds": [
         "study-claude-code"
       ],
-      "order": 4,
+      "order": 5,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -676,7 +729,7 @@
       "prerequisiteIds": [
         "study-messages-api"
       ],
-      "order": 5,
+      "order": 6,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -715,7 +768,7 @@
       "prerequisiteIds": [
         "study-workflow-control"
       ],
-      "order": 6,
+      "order": 7,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -753,7 +806,7 @@
       "prerequisiteIds": [
         "study-grounding"
       ],
-      "order": 7,
+      "order": 8,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -793,7 +846,7 @@
       "prerequisiteIds": [
         "study-eval-design"
       ],
-      "order": 8,
+      "order": 9,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -832,7 +885,7 @@
       "prerequisiteIds": [
         "study-messages-api"
       ],
-      "order": 9,
+      "order": 10,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -881,7 +934,7 @@
       "prerequisiteIds": [
         "study-claude-code"
       ],
-      "order": 10,
+      "order": 11,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -931,7 +984,7 @@
       "prerequisiteIds": [
         "study-grounding"
       ],
-      "order": 11,
+      "order": 12,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -982,7 +1035,7 @@
       "prerequisiteIds": [
         "study-mcp-capabilities"
       ],
-      "order": 12,
+      "order": 13,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -1032,7 +1085,7 @@
       "prerequisiteIds": [
         "study-workflow-control"
       ],
-      "order": 13,
+      "order": 14,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -1082,7 +1135,7 @@
       "prerequisiteIds": [
         "study-guardrails"
       ],
-      "order": 14,
+      "order": 15,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -1131,7 +1184,7 @@
       "prerequisiteIds": [
         "study-eval-design"
       ],
-      "order": 15,
+      "order": 16,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [
@@ -1179,7 +1232,7 @@
       "prerequisiteIds": [
         "study-model-selection"
       ],
-      "order": 16,
+      "order": 17,
       "contentEdition": "2",
       "reviewedAt": "2026-11-24",
       "resourceIds": [

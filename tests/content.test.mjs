@@ -97,3 +97,18 @@ test('each study lesson includes a concise important summary, best practices, ti
     assert.ok(lesson.resourceIds.some(id => c.resources.some(r => r.id === id && r.classification === 'official' && r.access === 'public')),lesson.id);
   }
 });
+
+test('Lesson 1 introduces Claude Code and the certification before technical study', async () => {
+  const c = validateContent(JSON.parse(await readFile(new URL('../site/content.json', import.meta.url), 'utf8')));
+  const first = c.items.filter(i => i.kind === 'study').sort((a,b) => a.order-b.order)[0];
+  assert.equal(first.id, 'study-introduction');
+  assert.match(first.title, /^Lesson 1/);
+  assert.deepEqual(first.prerequisiteIds, []);
+  const text = [...first.summary,...first.orientation,...first.bestPractices,...first.tips].join(' ');
+  for (const phrase of ['Claude Code','CCDV-F','No formal prerequisites','recommended','Partner Network','Python','TypeScript','JSON','2026-12-07','120 minutes','70 items']) assert.ok(text.includes(phrase),phrase);
+  assert.equal(first.nextItemId,'study-messages-api');
+  const urls = first.resourceIds.map(id => c.resources.find(r => r.id === id).url);
+  assert.ok(urls.includes('https://code.claude.com/docs/en/overview'));
+  assert.ok(urls.includes(c.guide.sourceUrl));
+  assert.ok(urls.includes('https://www.pearsonvue.com/us/en/anthropic.html'));
+});
